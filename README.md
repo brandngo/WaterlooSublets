@@ -5,4 +5,4 @@ A rental listing platform for UW and WLU students to find their next home 🏠
 
 | Milestone | Scheduled Completion | Actual Completion |
 |-----------|----------------------|-------------------|
-|     Finish Initial Design      |            Nov 3, 2021          |                   |
+|     Finish Initial Design      |            Nov 3, 2021          |        Nov 5, 2021           |
