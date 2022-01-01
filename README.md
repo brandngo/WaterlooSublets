@@ -1,46 +1,18 @@
-# Getting Started with Create React App
+# WaterlooSublets
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A rental listing platform for UW and WLU students to find their next home 🏠
 
-## Available Scripts
+# Project Tracker
 
-In the project directory, you can run:
+| Milestone               | Scheduled Completion | Actual Completion |
+| ----------------------- | -------------------- | ----------------- |
+| Finish Initial Design   | Nov 3, 2021          | Nov 5, 2021       |
+| Finish Home Screen Page | Nov 19, 2021         |                   |
 
-### `npm start`
+# TODO
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Frontend design is finished, so it means I have to start coding the frontend.
+For now, I plan to do it with dummy data/local data.
+I will also have to use Illustrator to design svg/vectors I can not get free access to.
+The frontend isn't challenging, it is just different from what I have used React for.
+I plan to use CRA for now, but this could change in the future.
