@@ -25,6 +25,7 @@ REACT-ROUTER | https://v5.reactrouter.com/web/guides/quick-start
 
 - https://www.better.dev/route-parameters-with-react-router
 - https://www.w3schools.com/react/react_router.asp
+- https://dev.to/gabrlcj/react-router-v6-some-of-the-new-changes-181m
 
 REDUX | https://react-redux.js.org/
 
