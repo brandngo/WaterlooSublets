@@ -1,17 +1,20 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import Listings from "./Listings";
+import { listData } from "../../utils/ddata"
 
 const Home = () => {
   return (
     <div>
       <Row>
-        <Col>
+        <Col xs={5}>
           <Listings
-
-          ></Listings>
+            data={listData}
+          />
         </Col>
-        <Col></Col>
+        <Col xs={7}>
+
+        </Col>
       </Row>
     </div>
   );

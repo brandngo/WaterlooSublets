@@ -1,35 +1,39 @@
 import React from 'react'
-import {ListGroup, Row, Col} from 'react-bootstrap'
+import {ListGroup, Row, Col, Image} from 'react-bootstrap'
 
 interface ListingsProps {
-  listItems: Array<any>;
+  data: Array<any>;
 }
 
-const Listings: React.FC<ListingsProps> = ({listItems}) => {
+const Listings: React.FC<ListingsProps> = ({data}) => {
+  console.log(data)
   return (
     <ListGroup>
-      {listItems.map((item) => {
+      {data.map((item) => 
         <ListGroup.Item
           action
           as="div"
+          key={item.id}
         >
           <div>
             <Row>
               <Col>
-                image
+                <Image 
+                  fluid
+                  src={item.picture}
+                  height="120px"
+                />
               </Col>
               <Col>
-                <Row>
-                  {item.rentPrice}
-                </Row>
-                <Row></Row>
-                <Row></Row>
+                <Row>{`${item.rent} / Month`}</Row>
+                <Row>{`${item.street}, ${item.city}`}</Row>
+                <Row>{`Duration: ${item.duration} Months`}</Row>
                 <Row></Row>
               </Col>
             </Row>
           </div>
         </ListGroup.Item>  
-      })}
+      )}
     </ListGroup>
   );
 }

@@ -6,9 +6,11 @@ import Home from "../components/Home/index"
 
 function App() {
   return (
-    <Routes>
-      <Route path="/explore" element={Home} />
-    </Routes>
+    <div>
+      <Routes>
+        <Route path="explore" element={<Home />} />
+      </Routes>
+    </div>
   );
 }
 
