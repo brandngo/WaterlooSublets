@@ -31,6 +31,8 @@ REDUX | https://react-redux.js.org/
 
 - https://redux.js.org/usage/configuring-your-store/
 
+PRETTIER
+
 # CUSTOM COMPONENTS
 
 GOOGLE-MAP-REACT | https://github.com/google-map-react/google-map-react/blob/HEAD/API.md

@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Col } from "react-bootstrap";
 import GoogleMapReact from "google-map-react";
 import Listings from "./Listings";
 import { listData } from "../../utils/ddata";
@@ -18,7 +17,11 @@ const Home = () => {
       </div>
       <div style={{ flexGrow: 3 }}>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: "AIzaSyAUFOKjcmzMJaR5v2ykPrViS0I0uTzsk0Y" }}
+          bootstrapURLKeys={{
+            key: process.env.REACT_APP_GOOGLE_MAPS
+              ? process.env.REACT_APP_GOOGLE_MAPS
+              : "",
+          }}
           options={mapOptions}
           center={{
             lat: 43.4643,
