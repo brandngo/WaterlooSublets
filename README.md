@@ -30,3 +30,7 @@ REACT-ROUTER | https://v5.reactrouter.com/web/guides/quick-start
 REDUX | https://react-redux.js.org/
 
 - https://redux.js.org/usage/configuring-your-store/
+
+# CUSTOM COMPONENTS
+
+GOOGLE-MAP-REACT | https://github.com/google-map-react/google-map-react/blob/HEAD/API.md

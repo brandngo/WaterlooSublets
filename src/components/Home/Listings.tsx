@@ -1,28 +1,20 @@
-import React from 'react'
-import {ListGroup, Row, Col, Image} from 'react-bootstrap'
+import React from "react";
+import { ListGroup, Row, Col, Image } from "react-bootstrap";
 
 interface ListingsProps {
   data: Array<any>;
 }
 
-const Listings: React.FC<ListingsProps> = ({data}) => {
-  console.log(data)
+const Listings: React.FC<ListingsProps> = ({ data }) => {
+  console.log(data);
   return (
-    <ListGroup>
-      {data.map((item) => 
-        <ListGroup.Item
-          action
-          as="div"
-          key={item.id}
-        >
+    <ListGroup style={{ height: "100vh", overflowY: "auto" }}>
+      {data.map((item) => (
+        <ListGroup.Item action as="div" key={item.id}>
           <div>
             <Row>
               <Col>
-                <Image 
-                  fluid
-                  src={item.picture}
-                  height="120px"
-                />
+                <Image fluid src={item.picture} height="120px" />
               </Col>
               <Col>
                 <Row>{`${item.rent} / Month`}</Row>
@@ -32,10 +24,10 @@ const Listings: React.FC<ListingsProps> = ({data}) => {
               </Col>
             </Row>
           </div>
-        </ListGroup.Item>  
-      )}
+        </ListGroup.Item>
+      ))}
     </ListGroup>
   );
-}
+};
 
-export default Listings
+export default Listings;
