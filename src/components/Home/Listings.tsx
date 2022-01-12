@@ -3,14 +3,20 @@ import { ListGroup, Row, Col, Image } from "react-bootstrap";
 
 interface ListingsProps {
   data: Array<any>;
+  setActive: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const Listings: React.FC<ListingsProps> = ({ data }) => {
+const Listings: React.FC<ListingsProps> = ({ data, setActive }) => {
   console.log(data);
   return (
     <ListGroup style={{ height: "100vh", overflowY: "auto" }}>
-      {data.map((item) => (
-        <ListGroup.Item action as="div" key={item.id}>
+      {data.map((item, index) => (
+        <ListGroup.Item
+          action
+          as="div"
+          key={item.id}
+          onClick={() => setActive(index)}
+        >
           <div>
             <Row>
               <Col>

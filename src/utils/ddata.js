@@ -9,7 +9,7 @@ export const listData = [
     gender: "Female",
     picture: "http://dummyimage.com/184x100.png/5fa2dd/ffffff",
     lat: "43.47620",
-    lng: "80.53892",
+    lng: "-80.53892",
   },
   {
     id: 2,

@@ -23,9 +23,8 @@ const returnLatLng = async (street: string, city: string) => {
       console.log(data);
       return data;
     }
-  })
-
-}
+  });
+};
 /*
 const test = async () => {
   const results = await Promise.all(data.map(async (item) => geocode(item["street"], item["city"])));

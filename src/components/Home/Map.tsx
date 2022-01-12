@@ -1,26 +1,52 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
+import { GeoAltFill } from "react-bootstrap-icons";
 
 interface MapProps {
-  data: any[]; 
+  data: any[];
+  active: number | null;
 }
 
-const Marker = ({number, lat, lng}) => {
+const Marker = ({ number, active, lat, lng }) => {
   return (
-    <div style={{    color: 'white', 
-    background: 'grey',
-    padding: '15px 10px',
-    display: 'inline-flex',
-    textAlign: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '100%',
-    transform: 'translate(-50%, -50%)'}}>{number}</div>
-  )
-}
-    
+    <div>
+      <GeoAltFill size={active ? 40 : 30} color={active ? "red" : "black"} />
+    </div>
+  );
+};
+
 // make sure data has lat and lng fields
-const Map: React.FC<MapProps> = ({data}) => {
+const Map: React.FC<MapProps> = ({ data, active }) => {
+  const [markers, setMarkers]: any[] = useState([]);
+
+  useEffect(() => {
+    setMarkers(
+      data.map((item) => (
+        <Marker active={false} number={item.id} lat={item.lat} lng={item.lng} />
+      ))
+    );
+  }, [data]);
+
+  useEffect(() => {
+    if (active !== null) {
+      console.log(active);
+      let oldInfo = markers[active].props;
+      let newMarker = (
+        <Marker
+          active={true}
+          number={oldInfo.id}
+          lat={oldInfo.lat}
+          lng={oldInfo.lng}
+        />
+      );
+
+      setMarkers([
+        ...markers.slice(0, active),
+        newMarker,
+        ...markers.slice(active + 1),
+      ]);
+    }
+  }, [active]);
 
   const mapOptions = () => ({
     panControl: false,
@@ -38,19 +64,13 @@ const Map: React.FC<MapProps> = ({data}) => {
       options={mapOptions}
       center={{
         lat: 43.474487,
-        lng: -80.537120,
+        lng: -80.53712,
       }}
       defaultZoom={16}
     >
-      {data.map((item) => (
-        <Marker 
-          number={item.id}
-          lat={item.lat}
-          lng={item.lng}
-        />
-      ))}
+      {markers}
     </GoogleMapReact>
   );
-}
+};
 
-export default Map
+export default Map;
