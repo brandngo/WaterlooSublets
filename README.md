@@ -36,3 +36,13 @@ PRETTIER
 # CUSTOM COMPONENTS
 
 GOOGLE-MAP-REACT | https://github.com/google-map-react/google-map-react/blob/HEAD/API.md
+
+REACT-GEOCODE | https://www.npmjs.com/package/react-geocode
+
+- Need paid google service for this :( can use below instead
+
+NOMINATIM | https://nominatim.org/release-docs/develop/api/Search/
+
+# BACKEND REQUIREMENTS
+
+must be able to send back info with geocode
