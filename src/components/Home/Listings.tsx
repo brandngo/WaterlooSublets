@@ -1,5 +1,5 @@
 import React from "react";
-import { ListGroup, Row, Col, Image } from "react-bootstrap";
+import { List, Row, Col, Image } from "antd";
 
 interface ListingsProps {
   data: Array<any>;
@@ -7,20 +7,19 @@ interface ListingsProps {
 }
 
 const Listings: React.FC<ListingsProps> = ({ data, setActive }) => {
-  console.log(data);
+  console.table(data);
   return (
-    <ListGroup style={{ height: "100vh", overflowY: "auto" }}>
+    <List style={{ height: "99vh", overflowY: "auto" }}>
       {data.map((item, index) => (
-        <ListGroup.Item
-          action
-          as="div"
+        <List.Item
+          actions={[]}
           key={item.id}
           onClick={() => setActive(index)}
         >
           <div>
             <Row>
               <Col>
-                <Image fluid src={item.picture} height="120px" />
+                <Image src={item.picture} height="120px" />
               </Col>
               <Col>
                 <Row>{`${item.rent} / Month`}</Row>
@@ -30,9 +29,9 @@ const Listings: React.FC<ListingsProps> = ({ data, setActive }) => {
               </Col>
             </Row>
           </div>
-        </ListGroup.Item>
+        </List.Item>
       ))}
-    </ListGroup>
+    </List>
   );
 };
 

@@ -56,6 +56,7 @@ const Map: React.FC<MapProps> = ({ data, active }) => {
 
   return (
     <GoogleMapReact
+      style={{ height: "90vh" }}
       bootstrapURLKeys={{
         key: process.env.REACT_APP_GOOGLE_MAPS
           ? process.env.REACT_APP_GOOGLE_MAPS

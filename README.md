@@ -19,7 +19,7 @@ I plan to use CRA for now, but this could change in the future.
 
 # PACKAGES ADDED
 
-BOOTSTRAP | https://react-bootstrap.github.io/getting-started/introduction/
+ANTD | https://ant.design/components/overview/
 
 REACT-ROUTER | https://v5.reactrouter.com/web/guides/quick-start
 
