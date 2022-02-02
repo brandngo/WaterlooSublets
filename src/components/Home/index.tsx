@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Listings from "./Listings";
 import Map from "./Map";
-import "./index.css"
-import { Card, Col, Row, Typography } from "antd"
+import "./index.css";
+import { Card, Col, Row, Typography } from "antd";
 import { listData } from "../../utils/ddata"; // dummy data
 
 const { Title } = Typography;
@@ -13,7 +13,6 @@ const Home = () => {
   const addrs = (data): any[] => {
     return data.map((obj) => `${data.street}, ${data.city}, ON`);
   };
-
 
   /*
 
@@ -31,27 +30,27 @@ const Home = () => {
       </Row>
 
 
-    */  
+    */
 
   return (
-    <div 
-      style={{ 
-        backgroundColor: "#E7E6E1", 
-        width: "100vw", 
+    <div
+      style={{
+        backgroundColor: "#E7E6E1",
+        width: "100vw",
         height: "100vh",
         display: "flex",
-        justifyContent: "center"
+        justifyContent: "center",
       }}
     >
       <Row>
-        <Col><Title>WaterlooSublets</Title></Col>
+        <Col>
+          <Title>WaterlooSublets</Title>
+        </Col>
         <Col>
           <Col></Col>
         </Col>
       </Row>
-      <Row>
-
-      </Row>
+      <Row></Row>
     </div>
   );
 };

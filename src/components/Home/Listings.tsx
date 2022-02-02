@@ -11,11 +11,7 @@ const Listings: React.FC<ListingsProps> = ({ data, setActive }) => {
   return (
     <List style={{ height: "99vh", overflowY: "auto" }}>
       {data.map((item, index) => (
-        <List.Item
-          actions={[]}
-          key={item.id}
-          onClick={() => setActive(index)}
-        >
+        <List.Item actions={[]} key={item.id} onClick={() => setActive(index)}>
           <div>
             <Row>
               <Col>

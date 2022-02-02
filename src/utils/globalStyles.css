@@ -1,0 +1,21 @@
+.center-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.login-gradient {
+  background: linear-gradient(
+    0deg,
+    rgba(49, 78, 82, 1) 55%,
+    rgba(61, 90, 93, 1) 70%,
+    rgba(88, 132, 138, 1) 100%
+  );
+}
+
+.login-button {
+  border-radius: 27px;
+  width: 300px;
+  height: 40px;
+}

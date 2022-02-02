@@ -1,13 +1,12 @@
-import { Layout  } from "antd";
-import React from 'react'
-import { Outlet } from 'react-router'
+import { Layout } from "antd";
+import React from "react";
+import { Outlet } from "react-router";
 
 const { Header, Content, Footer } = Layout;
 
-interface LayoutTemplateProps {
-}
+interface LayoutTemplateProps {}
 
-const LayoutTemplate: React.FC<LayoutTemplateProps> = ({  }) => {
+const LayoutTemplate: React.FC<LayoutTemplateProps> = ({}) => {
   return (
     <Layout>
       <Header></Header>
@@ -16,6 +15,6 @@ const LayoutTemplate: React.FC<LayoutTemplateProps> = ({  }) => {
       <Outlet />
     </Layout>
   );
-}
+};
 
-export default LayoutTemplate
+export default LayoutTemplate;
