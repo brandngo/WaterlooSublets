@@ -8,17 +8,48 @@ import {
   Checkbox,
   Form,
   Button,
+  message,
 } from "antd";
-
+import login, { Login } from "../../apis/auth";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 interface AccountCardProps {}
 
 const AccountCard: React.FC<AccountCardProps> = ({}) => {
-  const [newAccount, setNewAccount] = useState(false);
+  const [newAccount, setNewAccount] = useState(false);  // determine if the user is creating a new account or signing in
 
-  const onFinish = (values: any) => {
+  let navigate = useNavigate();
+
+  const onFinish = async (values: any) => {
     console.log("Success:", values);
+
+    const { email, password } = values
+    const loginObj: Login = {
+      email,
+      password
+    }
+
+    if (newAccount) {
+      login().signUp(loginObj)
+        .then(res => {
+          message.success("You signed up! Please login.")
+        })
+        .catch(err => message.error("Unable to sign up"))
+    } else {
+      console.log(process.env.REACT_APP_SUBLETSBACKEND)
+      login().signIn(loginObj)
+        .then(res => {
+          document.cookie = `user_token=${res.data.token}`
+          message.success("Signed in!")
+          navigate("/explore")
+        })
+        .catch(err => message.error("Unable to sign in"))
+    }
+    
+
+
+    document.cookie = `username=${values.emails}`
   };
 
   const onFinishFailed = (errorInfo: any) => {
