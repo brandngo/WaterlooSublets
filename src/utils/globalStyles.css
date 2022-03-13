@@ -19,3 +19,25 @@
   width: 300px;
   height: 40px;
 }
+
+.ant-typography {
+  margin: 0 !important;
+}
+
+.popdrop .ant-popover-inner-content {
+  padding: 0;
+}
+
+.no-extra-popdrop .ant-popover-inner-content {
+  padding: 0;
+}
+
+.popdrop .ant-popover-inner {
+  border-radius: 24px;
+}
+
+.ant-popover-placement-bottom,
+.ant-popover-placement-bottomLeft,
+.ant-popover-placement-bottomRight {
+  padding: 0 !important;
+}

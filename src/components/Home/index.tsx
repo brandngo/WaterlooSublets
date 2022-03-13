@@ -14,13 +14,12 @@ const Home = () => {
     return data.map((obj) => `${data.street}, ${data.city}, ON`);
   };
 
-  /*
+  // if mobile then only show list and collapsed nav
 
-        <Row>
-        <Col style={{ width: "45%"}}>
-          <Card size="small" style={{ borderRadius: "24px", backgroundColor: "#314E52" }}>
-            <Listings data={listData} setActive={setActiveCard} />
-          </Card>
+  return (
+      <Row>
+        <Col style={{ width: "45%" }}>
+          <Listings data={listData} setActive={setActiveCard} />
         </Col>
         <Col style={{ width: "55%" }}>
           <Card size="small" >
@@ -28,30 +27,6 @@ const Home = () => {
           </Card>
         </Col>
       </Row>
-
-
-    */
-
-  return (
-    <div
-      style={{
-        backgroundColor: "#E7E6E1",
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-      }}
-    >
-      <Row>
-        <Col>
-          <Title>WaterlooSublets</Title>
-        </Col>
-        <Col>
-          <Col></Col>
-        </Col>
-      </Row>
-      <Row></Row>
-    </div>
   );
 };
 

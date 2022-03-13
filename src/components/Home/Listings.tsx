@@ -1,5 +1,8 @@
 import React from "react";
-import { List, Row, Col, Image } from "antd";
+import { List, Row, Col, Image, Card, Input, Typography } from "antd";
+import GeneralList from "../GeneralList";
+
+const { Title } = Typography
 
 interface ListingsProps {
   data: Array<any>;
@@ -8,8 +11,9 @@ interface ListingsProps {
 
 const Listings: React.FC<ListingsProps> = ({ data, setActive }) => {
   console.table(data);
+
   return (
-    <List style={{ height: "99vh", overflowY: "auto" }}>
+    <GeneralList height="86vh">
       {data.map((item, index) => (
         <List.Item actions={[]} key={item.id} onClick={() => setActive(index)}>
           <div>
@@ -27,7 +31,7 @@ const Listings: React.FC<ListingsProps> = ({ data, setActive }) => {
           </div>
         </List.Item>
       ))}
-    </List>
+    </GeneralList>
   );
 };
 
