@@ -16,7 +16,7 @@ const Dropdown: React.FC<DropdownProps> = ({}) => {
   return (
     <Popdrop title={WatchlistBtn}>
       <GeneralList height="60vh">
-
+        
       </GeneralList>
     </Popdrop>
   );

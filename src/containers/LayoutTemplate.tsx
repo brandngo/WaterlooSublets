@@ -60,7 +60,6 @@ const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
 
         </Header>
         <Content>{children}</Content>
-        <Footer></Footer>
       </div>
     </Layout>
   );
