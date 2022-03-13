@@ -8,8 +8,8 @@ export interface Login {
 const login = () => {
   return {
     signIn: (data: Login) => authInstance.post("/signin", data),
-    signUp: (data) => authInstance.post("/signup", data)
-  }
-}
+    signUp: (data) => authInstance.post("/signup", data),
+  };
+};
 
 export default login;

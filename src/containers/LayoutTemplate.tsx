@@ -4,13 +4,15 @@ import { Outlet } from "react-router";
 
 const { Header, Content, Footer } = Layout;
 
-interface LayoutTemplateProps {}
+interface LayoutTemplateProps {
+  children?: any;
+}
 
-const LayoutTemplate: React.FC<LayoutTemplateProps> = ({}) => {
+const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
   return (
     <Layout>
       <Header></Header>
-      <Content></Content>
+      <Content>{children}</Content>
       <Footer></Footer>
       <Outlet />
     </Layout>

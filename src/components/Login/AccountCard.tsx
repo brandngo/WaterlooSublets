@@ -17,39 +17,37 @@ const { Title } = Typography;
 interface AccountCardProps {}
 
 const AccountCard: React.FC<AccountCardProps> = ({}) => {
-  const [newAccount, setNewAccount] = useState(false);  // determine if the user is creating a new account or signing in
+  const [newAccount, setNewAccount] = useState(false); // determine if the user is creating a new account or signing in
 
   let navigate = useNavigate();
 
   const onFinish = async (values: any) => {
     console.log("Success:", values);
 
-    const { email, password } = values
+    const { email, password } = values;
     const loginObj: Login = {
       email,
-      password
-    }
+      password,
+    };
 
     if (newAccount) {
-      login().signUp(loginObj)
-        .then(res => {
-          message.success("You signed up! Please login.")
+      login()
+        .signUp(loginObj)
+        .then((res) => {
+          message.success("You signed up! Please login.");
         })
-        .catch(err => message.error("Unable to sign up"))
+        .catch((err) => message.error("Unable to sign up"));
     } else {
-      console.log(process.env.REACT_APP_SUBLETSBACKEND)
-      login().signIn(loginObj)
-        .then(res => {
-          document.cookie = `user_token=${res.data.token}`
-          message.success("Signed in!")
-          navigate("/explore")
+      console.log(process.env.REACT_APP_SUBLETSBACKEND);
+      login()
+        .signIn(loginObj)
+        .then((res) => {
+          document.cookie = `user_token=${res.data.token}; max-age=86400; path=/;`;
+          message.success("Signed in!");
+          navigate("/explore");
         })
-        .catch(err => message.error("Unable to sign in"))
+        .catch((err) => message.error("Unable to sign in"));
     }
-    
-
-
-    document.cookie = `username=${values.emails}`
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -59,12 +57,12 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
   return (
     <Card
       className="login-gradient"
-      style={{ 
+      style={{
         borderRadius: "27px",
-        height: "60vh", 
-        minHeight: "380px", 
+        height: "60vh",
+        minHeight: "380px",
         width: "400px",
-        borderColor: "black" 
+        borderColor: "black",
       }}
     >
       <Col>
@@ -81,33 +79,45 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
             autoComplete="off"
           >
             <div>
-              <p style={{ marginLeft: "20px", marginBottom: "1px", fontWeight: "bold" }}>Email</p>
+              <p
+                style={{
+                  marginLeft: "20px",
+                  marginBottom: "1px",
+                  fontWeight: "bold",
+                }}
+              >
+                Email
+              </p>
               <Form.Item
                 name="email"
                 rules={[
-                  { 
-                    required: true, 
-                    message: "Please input your username!" 
+                  {
+                    required: true,
+                    message: "Please input your username!",
                   },
                 ]}
               >
-                <Input 
-                  className="login-button"
-                />
+                <Input className="login-button" />
               </Form.Item>
             </div>
 
             <div>
-              <p style={{ marginLeft: "20px", marginBottom: "1px", fontWeight: "bold" }}>Password</p>
+              <p
+                style={{
+                  marginLeft: "20px",
+                  marginBottom: "1px",
+                  fontWeight: "bold",
+                }}
+              >
+                Password
+              </p>
               <Form.Item
                 name="password"
                 rules={[
                   { required: true, message: "Please input your password!" },
                 ]}
               >
-                <Input.Password 
-                  className="login-button"
-                />
+                <Input.Password className="login-button" />
               </Form.Item>
             </div>
 
@@ -125,30 +135,34 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
 
             <Row justify="center">
               <Form.Item>
-                <Button 
-                  type="primary" 
+                <Button
+                  type="primary"
                   htmlType="submit"
-                  className="login-button"  
+                  className="login-button"
                   style={{
                     backgroundColor: "#8184A8",
-                    borderColor: "transparent"
+                    borderColor: "transparent",
                   }}
                 >
-                  <h3 style={{ margin: 0, color: "white" }}>{newAccount ? "SIGN UP" : "SIGN IN"}</h3>
+                  <h3 style={{ margin: 0, color: "white" }}>
+                    {newAccount ? "SIGN UP" : "SIGN IN"}
+                  </h3>
                 </Button>
               </Form.Item>
             </Row>
           </Form>
         </Row>
         <Row justify="center" style={{ marginTop: "20px" }}>
-          <Button 
-            onClick={() => setNewAccount(!newAccount)} 
+          <Button
+            onClick={() => setNewAccount(!newAccount)}
             style={{
               backgroundColor: "transparent",
               borderColor: "transparent",
             }}
           >
-            <h3 style={{ margin: 0, color: "#8184A8" }}>{newAccount ? "SIGN IN" : "SIGN UP"}</h3>
+            <h3 style={{ margin: 0, color: "#8184A8" }}>
+              {newAccount ? "SIGN IN" : "SIGN UP"}
+            </h3>
           </Button>
         </Row>
       </Col>
