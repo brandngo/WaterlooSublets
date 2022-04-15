@@ -17,16 +17,16 @@ const Home = () => {
   // if mobile then only show list and collapsed nav
 
   return (
-      <Row>
-        <Col style={{ width: "45%" }}>
-          <Listings data={listData} setActive={setActiveCard} />
-        </Col>
-        <Col style={{ width: "55%" }}>
-          <Card size="small" >
-            <Map data={listData} active={activeCard} />
-          </Card>
-        </Col>
-      </Row>
+    <Row>
+      <Col style={{ width: "45%" }}>
+        <Listings data={listData} setActive={setActiveCard} />
+      </Col>
+      <Col style={{ width: "55%" }}>
+        <Card size="small">
+          <Map data={listData} active={activeCard} />
+        </Card>
+      </Col>
+    </Row>
   );
 };
 

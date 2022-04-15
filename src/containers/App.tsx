@@ -10,14 +10,12 @@ import ProtectedRoutes from "./ProtectedRoute";
 
 function App() {
   return (
-    <div>
-      <Routes>
-        <Route index element={<Login />} />
-        <Route element={<ProtectedRoutes />}>
-          <Route path="explore" element={<Home />} />
-        </Route>
-      </Routes>
-    </div>
+    <Routes>
+      <Route index element={<Login />} />
+      <Route element={<ProtectedRoutes />}>
+        <Route path="explore" element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 

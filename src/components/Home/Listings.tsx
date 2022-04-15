@@ -2,7 +2,7 @@ import React from "react";
 import { List, Row, Col, Image, Card, Input, Typography } from "antd";
 import GeneralList from "../GeneralList";
 
-const { Title } = Typography
+const { Title } = Typography;
 
 interface ListingsProps {
   data: Array<any>;

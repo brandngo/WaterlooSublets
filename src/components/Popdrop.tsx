@@ -1,6 +1,6 @@
-import { Popover } from 'antd';
-import { TooltipPlacement } from 'antd/lib/tooltip';
-import React from 'react'
+import { Popover } from "antd";
+import { TooltipPlacement } from "antd/lib/tooltip";
+import React from "react";
 
 interface PopdropProps {
   className?: string;
@@ -9,7 +9,12 @@ interface PopdropProps {
   children: any;
 }
 
-const Popdrop: React.FC<PopdropProps> = ({ className, placement, title, children }) => {
+const Popdrop: React.FC<PopdropProps> = ({
+  className,
+  placement,
+  title,
+  children,
+}) => {
   return (
     <Popover
       content={children}
@@ -20,6 +25,6 @@ const Popdrop: React.FC<PopdropProps> = ({ className, placement, title, children
       {title}
     </Popover>
   );
-}
+};
 
-export default Popdrop
+export default Popdrop;

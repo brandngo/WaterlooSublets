@@ -10,18 +10,32 @@ import {
   Button,
   message,
 } from "antd";
-import login, { Login } from "../../apis/auth";
+import { Login } from "../../apis/auth";
+import { useSelector } from "react-redux";
+import { useThunkDispatch } from "../../store";
+import { clearMessage } from "../../slice/message";
+import { login, register } from "../../slice/auth";
 import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 interface AccountCardProps {}
 
+// https://stackoverflow.com/questions/65387046/property-user-does-not-exist-on-type-defaultrootstate
+// adding types to root state
+
 const AccountCard: React.FC<AccountCardProps> = ({}) => {
   const [newAccount, setNewAccount] = useState(false); // determine if the user is creating a new account or signing in
+  const { isLoggedIn } = useSelector((state) => state?.["auth"]);
+  //const { apiMessage } = useSelector(state => state?.["message"])
 
   let navigate = useNavigate();
+  const dispatch = useThunkDispatch();
 
-  const onFinish = async (values: any) => {
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  const onFinish = (values: any) => {
     console.log("Success:", values);
 
     const { email, password } = values;
@@ -31,22 +45,23 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
     };
 
     if (newAccount) {
-      login()
-        .signUp(loginObj)
-        .then((res) => {
-          message.success("You signed up! Please login.");
+      dispatch(register(loginObj))
+        .unwrap()
+        .then(() => {
+          message.success("Registered!");
         })
-        .catch((err) => message.error("Unable to sign up"));
+        .catch((err) => message.error("Unable to register"));
     } else {
-      console.log(process.env.REACT_APP_SUBLETSBACKEND);
-      login()
-        .signIn(loginObj)
-        .then((res) => {
-          document.cookie = `user_token=${res.data.token}; max-age=86400; path=/;`;
-          message.success("Signed in!");
+      dispatch(login(loginObj))
+        .unwrap()
+        .then(() => {
+          message.success("Signed In!");
           navigate("/explore");
         })
-        .catch((err) => message.error("Unable to sign in"));
+        .catch((err) => {
+          console.log(err);
+          message.error("Unable to sign in");
+        });
     }
   };
 

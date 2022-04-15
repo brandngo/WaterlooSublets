@@ -1,39 +1,36 @@
-import React from 'react'
-import {Row, Col, Typography, Card, List, Input} from "antd"
+import React from "react";
+import { Row, Col, Typography, Card, List, Input } from "antd";
 
-const { Title } = Typography
+const { Title } = Typography;
 
 interface GeneralListProps {
   height: string | number;
-  children: any;
+  children?: any;
 }
 
 const GeneralList: React.FC<GeneralListProps> = ({ height, children }) => {
-
   const SearchHeader = (
     <Row justify="space-between" align="bottom">
       <Col>
-        <Title level={3} style={{ color: "#F7F6E7" }}>Listings</Title>
+        <Title level={3} style={{ color: "#F7F6E7" }}>
+          Listings
+        </Title>
       </Col>
       <Col>
-        <Input.Search>
-        
-        </Input.Search>
+        <Input.Search></Input.Search>
       </Col>
     </Row>
-  )
-  
+  );
+
   return (
-    <Card 
+    <Card
       size="small"
       style={{ borderRadius: "24px", backgroundColor: "#314E52" }}
       title={SearchHeader}
     >
-      <List style={{ height, overflowY: "auto" }}>
-        {children}
-      </List>
+      <List style={{ height, overflowY: "auto" }}>{children}</List>
     </Card>
   );
-}
+};
 
-export default GeneralList
+export default GeneralList;

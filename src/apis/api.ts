@@ -11,6 +11,7 @@ export const authInstance = axios.create({
   },
 });
 
+// for auth calls
 export const subletsBackendInstance = axios.create({
   baseURL: process.env.SUBLETSBACKEND,
   timeout: 5000,
