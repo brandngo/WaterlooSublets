@@ -1,0 +1,43 @@
+.center-container {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.login-gradient {
+  background: linear-gradient(
+    0deg,
+    rgba(49, 78, 82, 1) 55%,
+    rgba(61, 90, 93, 1) 70%,
+    rgba(88, 132, 138, 1) 100%
+  );
+}
+
+.login-button {
+  border-radius: 27px;
+  width: 300px;
+  height: 40px;
+}
+
+.ant-typography {
+  margin: 0 !important;
+}
+
+.popdrop .ant-popover-inner-content {
+  padding: 0;
+}
+
+.no-extra-popdrop .ant-popover-inner-content {
+  padding: 0;
+}
+
+.popdrop .ant-popover-inner {
+  border-radius: 24px;
+}
+
+.ant-popover-placement-bottom,
+.ant-popover-placement-bottomLeft,
+.ant-popover-placement-bottomRight {
+  padding: 0 !important;
+}
