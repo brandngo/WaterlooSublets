@@ -1,5 +1,6 @@
 import { Layout, Typography, Row, Col } from "antd";
 import React from "react";
+import "../utils/globalStyles.css";
 import {
   SettingOutlined,
   InboxOutlined,
@@ -37,7 +38,9 @@ const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
         <Header style={{ backgroundColor: "#E7E6E1" }}>
           <nav>
             <Row justify="space-between" align="middle">
-              <Title style={{ fontSize: "24px" }}>WaterlooSublets</Title>
+              <Title style={{ fontSize: "24px" }} className="secondary-color">
+                WaterlooSublets
+              </Title>
               <Row gutter={70} align="middle">
                 <Col>
                   <WatchlistDropdown />

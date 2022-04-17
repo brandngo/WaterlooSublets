@@ -1,4 +1,4 @@
-import { Popover } from "antd";
+import { Popover, Button } from "antd";
 import { TooltipPlacement } from "antd/lib/tooltip";
 import React from "react";
 
@@ -22,7 +22,7 @@ const Popdrop: React.FC<PopdropProps> = ({
       overlayClassName={className ? className : "popdrop"}
       placement={placement ? placement : "bottom"}
     >
-      {title}
+      <Button type="link" icon={title} />
     </Popover>
   );
 };

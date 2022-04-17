@@ -9,7 +9,9 @@ import {
   Form,
   Button,
   message,
+  Spin,
 } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import { Login } from "../../apis/auth";
 import { useSelector } from "react-redux";
 import { useThunkDispatch } from "../../store";
@@ -25,6 +27,7 @@ interface AccountCardProps {}
 
 const AccountCard: React.FC<AccountCardProps> = ({}) => {
   const [newAccount, setNewAccount] = useState(false); // determine if the user is creating a new account or signing in
+  const [loading, setLoading] = useState(false);
   const { isLoggedIn } = useSelector((state) => state?.["auth"]);
   //const { apiMessage } = useSelector(state => state?.["message"])
 
@@ -36,13 +39,12 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
   }, [dispatch]);
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
-
     const { email, password } = values;
     const loginObj: Login = {
       email,
       password,
     };
+    setLoading(true);
 
     if (newAccount) {
       dispatch(register(loginObj))
@@ -50,7 +52,8 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
         .then(() => {
           message.success("Registered!");
         })
-        .catch((err) => message.error("Unable to register"));
+        .catch((err) => message.error("Unable to register"))
+        .then(() => setLoading(false));
     } else {
       dispatch(login(loginObj))
         .unwrap()
@@ -61,7 +64,8 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
         .catch((err) => {
           console.log(err);
           message.error("Unable to sign in");
-        });
+        })
+        .then(() => setLoading(false));
     }
   };
 
@@ -147,29 +151,37 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
                 </p>
               </Checkbox>
             </Form.Item>
-
-            <Row justify="center">
-              <Form.Item>
-                <Button
-                  type="primary"
-                  htmlType="submit"
-                  className="login-button"
-                  style={{
-                    backgroundColor: "#8184A8",
-                    borderColor: "transparent",
-                  }}
-                >
-                  <h3 style={{ margin: 0, color: "white" }}>
+            <Form.Item>
+              <Button
+                type="primary"
+                htmlType="submit"
+                className="login-button"
+                style={{
+                  backgroundColor: "#8184A8",
+                  borderColor: "transparent",
+                }}
+              >
+                <Row justify="center" align="middle">
+                  <Spin
+                    spinning={loading}
+                    indicator={
+                      <LoadingOutlined style={{ fontSize: 24 }} spin />
+                    }
+                  />
+                  <h3
+                    style={{ margin: 0, color: "white", textAlign: "center" }}
+                  >
                     {newAccount ? "SIGN UP" : "SIGN IN"}
                   </h3>
-                </Button>
-              </Form.Item>
-            </Row>
+                </Row>
+              </Button>
+            </Form.Item>
           </Form>
         </Row>
         <Row justify="center" style={{ marginTop: "20px" }}>
           <Button
             onClick={() => setNewAccount(!newAccount)}
+            disabled={loading}
             style={{
               backgroundColor: "transparent",
               borderColor: "transparent",

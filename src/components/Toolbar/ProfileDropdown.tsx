@@ -17,7 +17,6 @@ const Profile: React.FC<ProfileProps> = ({}) => {
 
   // remove this to use auth.ts logout
   const signOut = () => {
-    console.log("clicked");
     document.cookie =
       "user_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
     navigate("/");
@@ -29,11 +28,12 @@ const Profile: React.FC<ProfileProps> = ({}) => {
         style={{
           width: "120px",
           textAlign: "center",
-          height: "95px",
           padding: "10px 0",
         }}
       >
         <Item>Profile</Item>
+        <Divider style={{ margin: "10px 0" }} />
+        <Item onClick={() => navigate("/create")}>Create Listing</Item>
         <Divider style={{ margin: "10px 0" }} />
         <Item onClick={signOut}>Sign Out</Item>
       </div>
