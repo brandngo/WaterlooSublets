@@ -78,8 +78,6 @@ const AccountCard: React.FC<AccountCardProps> = ({}) => {
       className="login-gradient"
       style={{
         borderRadius: "27px",
-        height: "60vh",
-        minHeight: "380px",
         width: "400px",
         borderColor: "black",
       }}

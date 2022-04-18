@@ -8,21 +8,21 @@ interface loginProps {}
 
 const Login: React.FC<loginProps> = ({}) => {
   return (
-    <div
-      className="center-container"
+    <Row 
+      align="middle" 
+      justify="space-around"
       style={{
         backgroundColor: "#8184A8",
         height: "100vh",
-        flex: 1,
       }}
     >
-      <div>
-        <img src={logo} width="80%" />
-      </div>
-      <div style={{ marginLeft: "120px" }}>
+      <Col md={24} lg={12}>
+        <img src={logo} width="50%" height="20%" />
+      </Col>
+      <Col>
         <AccountCard />
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 
