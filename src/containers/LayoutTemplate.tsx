@@ -34,11 +34,11 @@ const NavItem: React.FC<NavItemProps> = ({ link = "", children }) => {
 const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
   return (
     <Layout>
-      <div style={{ padding: "0 10vw", backgroundColor: "#E7E6E1" }}>
+      <div style={{ padding: "0 10vw", backgroundColor: "#E7E6E1", height: "100vh" }}>
         <Header style={{ backgroundColor: "#E7E6E1" }}>
           <nav>
             <Row justify="space-between" align="middle">
-              <Title style={{ fontSize: "24px" }} className="secondary-color">
+              <Title style={{ fontSize: "1.8em" }} className="secondary-color">
                 WaterlooSublets
               </Title>
               <Row gutter={70} align="middle">
