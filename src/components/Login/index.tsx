@@ -8,8 +8,8 @@ interface loginProps {}
 
 const Login: React.FC<loginProps> = ({}) => {
   return (
-    <Row 
-      align="middle" 
+    <Row
+      align="middle"
       justify="space-around"
       style={{
         backgroundColor: "#8184A8",

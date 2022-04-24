@@ -13,55 +13,60 @@ import {
   DatePicker,
   message,
 } from "antd";
-import { LeftOutlined, RightOutlined, EnvironmentFilled } from "@ant-design/icons";
+import {
+  LeftOutlined,
+  RightOutlined,
+  EnvironmentFilled,
+} from "@ant-design/icons";
 import { NamePath } from "antd/lib/form/interface";
-import ReactMapboxGl, { Marker } from "react-mapbox-gl"
+import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import returnLatLng from "../../apis/geocodeAPI";
 
 const { Step } = Steps;
 const { Item, useForm } = Form;
 const { Option } = Select;
-const Map = ReactMapboxGl({ accessToken: process.env.REACT_APP_MAPBOX as string })
+const Map = ReactMapboxGl({
+  accessToken: process.env.REACT_APP_MAPBOX as string,
+});
 
 interface CreateListingProps {}
 
-type Coords = [number, number]
+type Coords = [number, number];
 
 const CreateListing: React.FC<CreateListingProps> = ({}) => {
   const [step, setStep] = useState(0);
-  const [addrField, setAddrField] = useState("")
-  const [mapCenter, setMapCenter] = useState<Coords>([-80.522296, 43.46527])
-  const [mapZoom, setMapZoom] = useState(13)
+  const [addrField, setAddrField] = useState("");
+  const [mapCenter, setMapCenter] = useState<Coords>([-80.522296, 43.46527]);
+  const [mapZoom, setMapZoom] = useState(13);
   const [form] = useForm();
-  const addrRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const addrRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const changeMapCenter = (center=undefined as Coords | undefined) => {
+  const changeMapCenter = (center = undefined as Coords | undefined) => {
     if (!center) {
-      setMapCenter([-80.522296, 43.46527])
-      setMapZoom(13)
-      return
+      setMapCenter([-80.522296, 43.46527]);
+      setMapZoom(13);
+      return;
     }
-    setMapZoom(16)
-    setMapCenter(center)
-  }
+    setMapZoom(16);
+    setMapCenter(center);
+  };
 
   useEffect(() => {
-    const locFields = form.getFieldsValue(fieldNames["Location"] as NamePath[])
-    const addr = `${locFields.addr} ${locFields.city}`
+    const locFields = form.getFieldsValue(fieldNames["Location"] as NamePath[]);
+    const addr = `${locFields.addr} ${locFields.city}`;
     if (addrRef.current) {
-      clearTimeout(addrRef.current)
+      clearTimeout(addrRef.current);
     }
     if (locFields.addr) {
       addrRef.current = setTimeout(() => {
-        returnLatLng(addr)
-          .then(res => {
-            changeMapCenter(res?.data.features[0].center)
-          })
-      }, 2000)
+        returnLatLng(addr).then((res) => {
+          changeMapCenter(res?.data.features[0].center);
+        });
+      }, 2000);
     } else {
-      changeMapCenter()
+      changeMapCenter();
     }
-  }, [addrField])
+  }, [addrField]);
 
   const nextStep = () => {
     if (step >= formSteps.length - 1) {
@@ -70,14 +75,15 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
       return;
       // validate form here and submit
     }
-    form.validateFields(fieldNames["Location"] as NamePath[]) // change key per step
+    form
+      .validateFields(fieldNames["Location"] as NamePath[]) // change key per step
       .then((values) => {
-        console.log(values)
+        console.log(values);
         setStep(step + 1);
       })
       .catch(() => {
-        message.error("An error occured")
-      })
+        message.error("An error occured");
+      });
   };
   const prevStep = () => {
     if (step <= 0) return;
@@ -96,29 +102,27 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
   };
 
   const fieldNames = {
-    "Location": ["addr", "aprt", "city"]
-  }
+    Location: ["addr", "aprt", "city"],
+  };
   const formSteps = [
     {
       title: "Location", // where the user enters where the property is, as well as api call to get lat/lng of address and show it on map
       content: (
         <Col xs={24} lg={10} style={{ height: "50vh", marginBottom: "10vh" }}>
-          <Item 
-            label="Address" 
+          <Item
+            label="Address"
             name={fieldNames["Location"][0]}
             rules={[
               {
                 required: true,
-                message: "An address is needed, you can enter just the street if desired."
-              }
+                message:
+                  "An address is needed, you can enter just the street if desired.",
+              },
             ]}
           >
-            <Input onChange={(e) => setAddrField(e.target.value)}/>
+            <Input onChange={(e) => setAddrField(e.target.value)} />
           </Item>
-          <Item 
-            label="Apartment, suite, etc." 
-            name={fieldNames["Location"][1]}
-          >
+          <Item label="Apartment, suite, etc." name={fieldNames["Location"][1]}>
             <Input />
           </Item>
 
@@ -142,7 +146,9 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
               <Marker coordinates={mapCenter}>
                 <EnvironmentFilled style={{ fontSize: "2em", color: "red" }} />
               </Marker>
-            ) : <div />}
+            ) : (
+              <div />
+            )}
           </Map>
         </Col>
       ),
@@ -226,7 +232,7 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
       </Row>
       <Divider />
       <Form form={form} colon={false}>
-        <Row justify="center" style={{ width: "100%"}}>
+        <Row justify="center" style={{ width: "100%" }}>
           {determineStep()}
         </Row>
       </Form>

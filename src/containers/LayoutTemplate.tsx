@@ -34,7 +34,13 @@ const NavItem: React.FC<NavItemProps> = ({ link = "", children }) => {
 const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
   return (
     <Layout>
-      <div style={{ padding: "0 10vw", backgroundColor: "#E7E6E1", height: "100vh" }}>
+      <div
+        style={{
+          padding: "0 10vw",
+          backgroundColor: "#E7E6E1",
+          height: "100vh",
+        }}
+      >
         <Header style={{ backgroundColor: "#E7E6E1" }}>
           <nav>
             <Row justify="space-between" align="middle">

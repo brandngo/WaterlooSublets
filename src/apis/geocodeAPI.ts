@@ -10,13 +10,15 @@ export const mapBoxAPI = axios.create({
 });
 
 const returnLatLng = async (addr: string) => {
-  const endpoint = "mapbox.places"
+  const endpoint = "mapbox.places";
   try {
-    const resp = await mapBoxAPI.get(`${endpoint}/${addr}.json?access_token=${process.env.REACT_APP_MAPBOX}`)
-    const {data, status} = resp
-    return { data, status }
-  } catch(err) {
-    console.log(err)
+    const resp = await mapBoxAPI.get(
+      `${endpoint}/${addr}.json?access_token=${process.env.REACT_APP_MAPBOX}`
+    );
+    const { data, status } = resp;
+    return { data, status };
+  } catch (err) {
+    console.log(err);
   }
 };
 
