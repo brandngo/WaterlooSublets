@@ -12,18 +12,22 @@ import {
   Select,
   DatePicker,
   message,
+  Checkbox,
 } from "antd";
 import {
   LeftOutlined,
   RightOutlined,
   EnvironmentFilled,
 } from "@ant-design/icons";
+import PictureWall from "./PictureWall";
+import FormList from "./FormList";
 import { NamePath } from "antd/lib/form/interface";
 import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import returnLatLng from "../../apis/geocodeAPI";
 
 const { Step } = Steps;
 const { Item, useForm } = Form;
+const { RangePicker } = DatePicker;
 const { Option } = Select;
 const Map = ReactMapboxGl({
   accessToken: process.env.REACT_APP_MAPBOX as string,
@@ -76,7 +80,7 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
       // validate form here and submit
     }
     form
-      .validateFields(fieldNames["Location"] as NamePath[]) // change key per step
+      .validateFields(fieldNames[formSteps[step].title] as NamePath[]) // change key per step
       .then((values) => {
         console.log(values);
         setStep(step + 1);
@@ -103,6 +107,14 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
 
   const fieldNames = {
     Location: ["addr", "aprt", "city"],
+    "Extra Details": [
+      "gender",
+      "ensuite",
+      "bathrooms",
+      "pictures",
+      "furniture",
+    ],
+    "Contract Details": ["rent", "costs", "term", "contract"],
   };
   const formSteps = [
     {
@@ -127,7 +139,7 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
           </Item>
 
           <Item
-            label="City" // TODO: different options
+            label="City"
             name={fieldNames["Location"][2]}
             initialValue="waterloo"
           >
@@ -155,54 +167,75 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
     },
     {
       title: "Extra Details", // include pictures and whats included with place
+      // TODO: picture wall will need a different api to go to
       content: (
-        <>
+        <Col xs={24} lg={10}>
           <Item
-            label="Gender" // TODO: different options
-            key="gender"
+            label="Gender"
+            name={fieldNames["Extra Details"][0]}
+            initialValue="co-ed"
           >
             <Select>
               <Option value="male">Male</Option>
               <Option value="female">Female</Option>
+              <Option value="co-ed">Co-ed</Option>
               <Option value="other">Other</Option>
             </Select>
           </Item>
-          <Item label="Pictures" key="pic"></Item>
-          <Item label="Included" key="incl">
-            {
-              // dynamic inputs "Complex Dynamic Form Item"
-            }
+          <Item
+            label="Ensuite?"
+            valuePropName="checked"
+            name={fieldNames["Extra Details"][1]}
+            initialValue={false}
+          >
+            <Checkbox />
           </Item>
-        </>
+          <Item label="Bathrooms" name={fieldNames["Extra Details"][2]}>
+            <InputNumber min={0} step={1} />
+          </Item>
+          <Item label="Pictures" name={fieldNames["Extra Details"][3]}>
+            <PictureWall />
+          </Item>
+          <Item label="Furniture" name={fieldNames["Extra Details"][4]}>
+            <FormList />
+          </Item>
+        </Col>
       ),
     },
     {
       title: "Contract Details", // contains rent cost, length of contract/stay
       content: (
-        <>
+        <Col xs={24} lg={10}>
           <Item
             label="Rent (monthly)" // TODO: different options
-            name="rent"
-            key="rent"
+            name={fieldNames["Contract Details"][0]}
           >
-            <InputNumber min={0} />
+            <InputNumber min={0} style={{ width: "50%" }} />
           </Item>
-          <Item label="Additional Costs" key="costs">
-            <InputNumber min={0} />
+          <Item
+            label="Additional Costs"
+            name={fieldNames["Contract Details"][1]}
+          >
+            <InputNumber min={0} style={{ width: "50%" }} />
           </Item>
           {
             // TODO: describe additional costs (whats included for utilities etc.)
           }
-          <Item label="Term" key="term">
-            <DatePicker />
+          <Item label="Term" name={fieldNames["Contract Details"][2]}>
+            <RangePicker />
           </Item>
-          <Item label="Contract Type" key="type">
+          <Item
+            label="Contract Type"
+            name={fieldNames["Contract Details"][3]}
+            initialValue="either"
+          >
             <Select>
               <Option value="sublease">Sublease</Option>
               <Option value="lease">Lease</Option>
+              <Option value="either">Lease/Sublease</Option>
             </Select>
           </Item>
-        </>
+        </Col>
       ),
     },
   ];
@@ -231,7 +264,7 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
         </Col>
       </Row>
       <Divider />
-      <Form form={form} colon={false}>
+      <Form form={form} colon={false} {...formItemLayout}>
         <Row justify="center" style={{ width: "100%" }}>
           {determineStep()}
         </Row>
@@ -239,7 +272,12 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
 
       <Row justify="center">
         <Space>
-          <Button onClick={prevStep} type="primary" size="large">
+          <Button
+            onClick={prevStep}
+            type="primary"
+            size="large"
+            disabled={step === 0}
+          >
             <LeftOutlined />
             Previous
           </Button>
