@@ -5,9 +5,8 @@ import {
   SettingOutlined,
   InboxOutlined,
   BellOutlined,
-  UserOutlined,
-  BookOutlined,
 } from "@ant-design/icons";
+import { NavigateFunction } from "react-router-dom";
 import WatchlistDropdown from "../components/Toolbar/WatchlistDropdown";
 import ProfileDropdown from "../components/Toolbar/ProfileDropdown";
 
@@ -16,6 +15,7 @@ const { Title } = Typography;
 
 interface LayoutTemplateProps {
   children?: any;
+  navigate: NavigateFunction;
 }
 
 interface NavItemProps {
@@ -31,7 +31,10 @@ const NavItem: React.FC<NavItemProps> = ({ link = "", children }) => {
   );
 };
 
-const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
+const LayoutTemplate: React.FC<LayoutTemplateProps> = ({
+  navigate,
+  children,
+}) => {
   return (
     <Layout>
       <div
@@ -44,7 +47,11 @@ const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
         <Header style={{ backgroundColor: "#E7E6E1" }}>
           <nav>
             <Row justify="space-between" align="middle">
-              <Title style={{ fontSize: "1.8em" }} className="secondary-color">
+              <Title
+                style={{ fontSize: "1.8em" }}
+                className="secondary-color"
+                onClick={() => navigate("/explore")}
+              >
                 WaterlooSublets
               </Title>
               <Row gutter={70} align="middle">
@@ -65,7 +72,7 @@ const LayoutTemplate: React.FC<LayoutTemplateProps> = ({ children }) => {
                 </Col>
 
                 <Col>
-                  <ProfileDropdown />
+                  <ProfileDropdown navigate={navigate} />
                 </Col>
               </Row>
             </Row>

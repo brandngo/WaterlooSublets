@@ -24,6 +24,7 @@ import FormList from "./FormList";
 import { NamePath } from "antd/lib/form/interface";
 import ReactMapboxGl, { Marker } from "react-mapbox-gl";
 import returnLatLng from "../../apis/geocodeAPI";
+import api from "../../apis/posts";
 
 const { Step } = Steps;
 const { Item, useForm } = Form;
@@ -73,8 +74,23 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
   }, [addrField]);
 
   const nextStep = () => {
+    const submitForm = () => {
+      let values = form.getFieldsValue(true);
+      values.coords = mapCenter;
+      if (typeof values.term[0] === "object") {
+        values.term[0] = values.term[0].format("L");
+        values.term[1] = values.term[1].format("L");
+      }
+      console.log(values);
+      api
+        .create(values)
+        .then(() => {
+          console.log("success");
+        })
+        .catch((err) => console.log(err));
+    };
     if (step >= formSteps.length - 1) {
-      console.log(form.getFieldsValue(true));
+      submitForm();
 
       return;
       // validate form here and submit
@@ -141,11 +157,11 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
           <Item
             label="City"
             name={fieldNames["Location"][2]}
-            initialValue="waterloo"
+            initialValue="Waterloo"
           >
             <Select>
-              <Option value="waterloo">Waterloo</Option>
-              <Option value="kitchener">Kitchener</Option>
+              <Option value="Waterloo">Waterloo</Option>
+              <Option value="Kitchener">Kitchener</Option>
             </Select>
           </Item>
           <Map
@@ -167,7 +183,6 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
     },
     {
       title: "Extra Details", // include pictures and whats included with place
-      // TODO: picture wall will need a different api to go to
       content: (
         <Col xs={24} lg={10}>
           <Item
@@ -196,7 +211,16 @@ const CreateListing: React.FC<CreateListingProps> = ({}) => {
           <Item label="Pictures" name={fieldNames["Extra Details"][3]}>
             <PictureWall />
           </Item>
-          <Item label="Furniture" name={fieldNames["Extra Details"][4]}>
+          <Item
+            label="Furniture"
+            name={fieldNames["Extra Details"][4]}
+            rules={[
+              {
+                required: true,
+                message: "A term from move-in day to move-out day is required.",
+              },
+            ]}
+          >
             <FormList />
           </Item>
         </Col>

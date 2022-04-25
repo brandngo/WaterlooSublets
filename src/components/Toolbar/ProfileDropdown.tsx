@@ -1,14 +1,14 @@
 import React from "react";
 import Popdrop from "../Popdrop";
 import { UserOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction } from "react-router-dom";
 import { Row, Col, List, Divider } from "antd";
 
-interface ProfileProps {}
+interface ProfileProps {
+  navigate: NavigateFunction;
+}
 
-const Profile: React.FC<ProfileProps> = ({}) => {
-  const navigate = useNavigate();
-
+const Profile: React.FC<ProfileProps> = ({ navigate }) => {
   const Item = ({ onClick = () => {}, style = {}, children }) => (
     <h3 style={style} onClick={() => onClick()}>
       {children}

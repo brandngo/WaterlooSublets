@@ -1,10 +1,12 @@
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, NavigateFunction, Outlet } from "react-router-dom";
 import LayoutTemplate from "./LayoutTemplate";
 
-interface ProtectedRoutesProps {}
+interface ProtectedRoutesProps {
+  navigate: NavigateFunction;
+}
 
-const ProtectedRoutes: React.FC<ProtectedRoutesProps> = ({}) => {
+const ProtectedRoutes: React.FC<ProtectedRoutesProps> = ({ navigate }) => {
   function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -25,7 +27,7 @@ const ProtectedRoutes: React.FC<ProtectedRoutesProps> = ({}) => {
     return <Navigate to="/" replace />;
   }
   return (
-    <LayoutTemplate>
+    <LayoutTemplate navigate={navigate}>
       <Outlet />
     </LayoutTemplate>
   );

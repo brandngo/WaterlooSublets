@@ -1,4 +1,4 @@
-import { authInstance } from "./api";
+import axios from "axios";
 
 export interface Login {
   email: string;
@@ -21,6 +21,15 @@ function getCookie(cname) {
   return "";
 }
 
+const authInstance = axios.create({
+  baseURL: process.env.REACT_APP_SUBLETSBACKEND,
+  timeout: 5000,
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+  },
+});
+
 const auth = {
   signIn: (data: Login) =>
     authInstance
@@ -33,17 +42,6 @@ const auth = {
   signUp: (data) => authInstance.post("/signup", data),
   signOut: () => "user_token=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;",
   getUser: () => getCookie("user_token"),
-};
-
-export const authHeader = () => {
-  const token = getCookie("user_token");
-  if (token) {
-    return {
-      "x-access-token": token,
-    };
-  } else {
-    return {};
-  }
 };
 
 export default auth;
