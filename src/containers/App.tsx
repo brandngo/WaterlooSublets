@@ -3,6 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Login from "../components/Login/index";
 import Home from "../components/Home/index";
+import CreateListing from "../components/CreateListing/index";
 
 import ProtectedRoutes from "./ProtectedRoute";
 
@@ -14,6 +15,7 @@ function App() {
       <Route index element={<Login />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="explore" element={<Home />} />
+        <Route path="create" element={<CreateListing />} />
       </Route>
     </Routes>
   );
